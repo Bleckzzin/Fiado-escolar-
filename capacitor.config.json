@@ -1,0 +1,8 @@
+{
+  "appId": "br.com.fiadoescolar.app",
+  "appName": "Fiado Escolar",
+  "webDir": "www",
+  "backgroundColor": "#0b0708",
+  "android": { "allowMixedContent": false },
+  "plugins": { "SystemBars": { "style": "DARK" } }
+}

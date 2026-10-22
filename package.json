@@ -1,0 +1,25 @@
+{
+  "name": "fiado-escolar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fiado Escolar - controle de vendas e fiado (APK Android via Capacitor)",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "android:add": "cap add android",
+    "android:assets": "capacitor-assets generate --android",
+    "android:patch": "node scripts/patch-android.mjs",
+    "android:sync": "cap sync android",
+    "android:apk": "cd android && ./gradlew assembleRelease"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/filesystem": "^8.0.0",
+    "@capacitor/share": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.0.0"
+  }
+}

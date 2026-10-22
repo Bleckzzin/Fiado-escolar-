@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4a0e1e">
+<title>Fiado Escolar</title>
+<style>
+:root{--b:#7a1530;--bt:#7a1530;--b2:#f7eaed;--bg:#f3f0f0;--c:#fff;--ln:#efe6e8;--bd:#dccdd1;--t:#1b1416;--m:#7a6b6f;--g:#2e7d4f;--r:#c0182f;--o:#a16207;--tgg:#e2f3ea;--tgr:#fbe3e7;--tgo:#faefd3;--tgx:#ece6e7;--grad:linear-gradient(135deg,#8a1a38,#4a0e1e);--sh:0 1px 2px #1b14160d,0 6px 18px #1b141612}
+html[data-theme=dark]{color-scheme:dark;--bt:#e58a9d;--b2:#2b1219;--bg:#0b0708;--c:#161011;--ln:#2a1d20;--bd:#3e2c30;--t:#f2eaec;--m:#a99a9e;--g:#5fcf8b;--r:#ff7d90;--o:#e8b04a;--tgg:#12301f;--tgr:#3b141d;--tgo:#3a2c10;--tgx:#2a1d20;--sh:0 1px 2px #0006,0 8px 20px #0005}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{overscroll-behavior-y:none;margin:0;font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);padding-bottom:96px}
+button,input,select{font-family:inherit;color:inherit}
+.ic{flex:none;display:block}
+:root{--sat:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px));--sab:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}
+header{background:linear-gradient(135deg,#120708 0%,#4a0e1e 60%,#7a1530 100%);color:#fff;padding:calc(14px + var(--sat)) 16px 14px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;box-shadow:0 4px 18px #0004}
+header h1{font-size:19px;margin:0;flex:1;display:flex;align-items:center;gap:10px;letter-spacing:.2px}
+.back,.hb{background:#ffffff1f;color:#fff;border:0;border-radius:12px;min-height:40px;min-width:40px;padding:0 14px;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.back:active,.hb:active{background:#ffffff40}
+.back{font-size:0;padding:0}
+.back::before{content:"";width:22px;height:22px;background:#fff;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E") center/contain no-repeat}
+main{padding:16px;max-width:760px;margin:0 auto}
+.card{background:var(--c);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--sh);border:1px solid var(--ln)}
+.card h3{margin:0 0 10px;font-size:15px;font-weight:700;letter-spacing:.2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}.grid .card{margin:0}
+.kpi .ki{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--b2);color:var(--bt);margin-bottom:10px}
+.kpi .ki:empty{display:none}.kpi .ki.g{color:var(--g);background:var(--tgg)}.kpi .ki.r{color:var(--r);background:var(--tgr)}
+.kpi small{color:var(--m);font-size:13px;display:block}.kpi b{font-size:23px;font-weight:800;display:block;margin-top:2px;letter-spacing:-.3px}
+.grid>.kpi:first-child{background:var(--grad);border:0;color:#fff}
+.grid>.kpi:first-child small{color:#ffffffb8}.grid>.kpi:first-child b{color:#fff}.grid>.kpi:first-child .ki{background:#ffffff26;color:#fff}
+.g{color:var(--g)}.r{color:var(--r)}.b{color:var(--bt)}.o{color:var(--o)}.m,small{color:var(--m)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--ln)}
+.row:last-child{border:0}.row>div:first-child{min-width:0}.row small{display:block}
+.row[onclick]{cursor:pointer;border-radius:12px;padding-left:8px;padding-right:8px;margin:0 -8px;transition:background .15s}
+@media(hover:hover){.row[onclick]:hover{background:var(--b2)}}
+.mi{gap:14px}.mi b{flex:1}.mic{width:38px;height:38px;border-radius:12px;background:var(--b2);color:var(--bt);display:grid;place-items:center;flex:none}.mi>.ic:last-child{color:var(--m)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;border:0;border-radius:14px;background:var(--grad);color:#fff;font-size:16px;font-weight:700;margin-top:10px;padding:0 14px;box-shadow:0 6px 14px #7a153038;transition:transform .12s,filter .15s;cursor:pointer}
+.btn:active{transform:scale(.98)}@media(hover:hover){.btn:hover{filter:brightness(1.1)}}
+.btn.gh{background:var(--b2);color:var(--bt);box-shadow:none}.btn.red{background:var(--tgr);color:var(--r);box-shadow:none}.btn.sm{min-height:38px;width:auto;font-size:14px;margin:0;padding:0 12px;box-shadow:none}
+input,select{width:100%;min-height:48px;border:1.5px solid var(--bd);border-radius:12px;padding:0 12px;font-size:16px;background:var(--c);color:var(--t);margin:4px 0 10px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:0;border-color:var(--b);box-shadow:0 0 0 3px #7a153026}
+.srch{padding-left:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a8a8e' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:13px center;background-size:20px}
+label{font-size:13px;color:var(--m);font-weight:600}
+.chips{display:flex;gap:8px;margin:0 0 14px;overflow-x:auto;padding-bottom:2px}
+.chip{border:1px solid var(--ln);border-radius:20px;padding:0 16px;min-height:40px;background:var(--c);color:var(--t);font-size:15px;white-space:nowrap;cursor:pointer;transition:all .15s}
+.chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 4px 10px #7a153038}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--tgx);color:var(--m);display:inline-block}
+.tag.g{background:var(--tgg);color:var(--g)}.tag.r{background:var(--tgr);color:var(--r)}.tag.o{background:var(--tgo);color:var(--o)}.tag.x{background:var(--tgx);color:var(--m)}
+.void{opacity:.5;text-decoration:line-through}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--c);display:flex;box-shadow:0 -4px 20px #0002;padding-bottom:var(--sab);border-top:1px solid var(--ln);z-index:6}
+nav .brand{display:none}
+nav button{flex:1;border:0;background:none;padding:9px 0 8px;font-size:11px;color:var(--m);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:color .15s}
+nav button em{font-style:normal}nav button span{display:block;line-height:0}
+nav button.on{color:var(--bt);font-weight:700}
+nav button.sale span{background:var(--grad);color:#fff;border-radius:50%;width:50px;height:50px;display:grid;place-items:center;margin-top:-24px;box-shadow:0 6px 16px #7a153066;border:3px solid var(--c)}
+.ov{position:fixed;inset:0;background:#000a;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:20;display:flex;align-items:flex-end;animation:fade .2s}
+.sheet{background:var(--c);width:100%;max-width:560px;margin:0 auto;border-radius:24px 24px 0 0;padding:20px 20px calc(20px + var(--sab));max-height:92vh;overflow:auto;animation:sl .25s ease}
+.sheet h3{margin:0 0 12px;font-size:19px}
+#toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);background:#1b1416;color:#fff;border-radius:14px;padding:12px 18px;z-index:30;display:none;max-width:90%;text-align:center;box-shadow:0 8px 24px #0006;border:1px solid #7a1530}
+.step{display:flex;align-items:center;gap:8px}.step button{width:42px;height:42px;border-radius:50%;border:0;background:var(--b2);color:var(--bt);font-size:22px;font-weight:700;cursor:pointer}.step b{min-width:24px;text-align:center}
+.total{font-size:30px;font-weight:800;color:var(--bt);letter-spacing:-.5px}
+.note{font-size:13px;color:var(--m);margin:4px 2px 14px}
+.pix{text-align:center}.pixh{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--bt)}.pixh h3{margin:0;font-size:21px;color:var(--t)}
+.qrbox{width:min(100%,320px);aspect-ratio:1;margin:18px auto 22px;background:#fff;border-radius:22px;padding:14px;display:grid;place-items:center;border:2px solid var(--b);box-shadow:0 0 0 7px var(--b2),var(--sh)}
+.qrbox img{width:100%;height:100%;object-fit:contain}
+.qrbox.empty{background:var(--b2);border:2px dashed var(--bd);box-shadow:none;color:var(--m);align-content:center;justify-items:center;gap:8px;font-size:14px}
+.pix .btn{max-width:320px;margin-left:auto;margin-right:auto}
+.stick{position:sticky;bottom:calc(78px + var(--sab));z-index:4;box-shadow:0 -6px 24px #0003}
+.qin{width:60px;min-height:42px;margin:0;padding:0 4px;text-align:center;font-weight:700;border-radius:12px}
+.sbt{font-weight:700;color:var(--bt)}
+@keyframes up{from{opacity:0;transform:translateY(8px)}}@keyframes fade{from{opacity:0}}@keyframes sl{from{opacity:0;transform:translateY(28px)}}
+.an>*{animation:up .35s ease both}.an>*:nth-child(2){animation-delay:.05s}.an>*:nth-child(3){animation-delay:.1s}.an>*:nth-child(n+4){animation-delay:.15s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(min-width:700px){.ov{align-items:center}.sheet{border-radius:24px}}
+@media(min-width:900px){
+body{padding:0 0 0 240px}
+nav{top:0;bottom:0;right:auto;width:240px;flex-direction:column;justify-content:flex-start;gap:4px;padding:22px 14px;background:linear-gradient(180deg,#120708,#2a0a14 70%,#4a0e1e);box-shadow:4px 0 24px #0003;border:0}
+nav .brand{display:flex;align-items:center;gap:10px;color:#fff;font-size:18px;padding:4px 10px 22px}
+nav button{flex:none;flex-direction:row;gap:12px;font-size:15px;padding:12px 14px;border-radius:12px;color:#d9c3c8}
+nav button:hover{background:#ffffff14}nav button.on{background:#ffffff1f;color:#fff}
+nav button.sale{background:var(--grad);color:#fff;margin:6px 0 10px}
+nav button.sale span{width:auto;height:auto;margin:0;background:none;box-shadow:none;border:0;border-radius:0}
+main{max-width:1000px;padding:26px}header{padding:16px 28px}#toast{bottom:30px}.stick{bottom:16px}}
+</style></head><body>
+<header id="top"></header><main id="app"></main><nav id="nav"></nav><div id="modal"></div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const R=c=>(c/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
+const toC=v=>{v=String(v).trim();if(!v)return null;v=v.includes(',')?v.replace(/\./g,'').replace(',','.'):v;const n=Number(v);return isNaN(n)||n<0?null:Math.round(n*100)};
+const fd=ts=>new Date(ts).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});
+const inp=ts=>new Date(ts-new Date(ts).getTimezoneOffset()*6e4).toISOString().slice(0,16);
+const day0=()=>{const d=new Date();d.setHours(0,0,0,0);return d.getTime()};
+const D1=864e5;
+const NATIVE=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());let anim=false,pixImg=null;
+const IC={home:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14.3c2 .7 3.5 2.4 3.5 5.7"/>',plus:'<path d="M12 5v14M5 12h14"/>',wallet:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1"/>',cash:'<rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',box:'<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',chart:'<path d="M4 20V4M4 20h16"/><path d="M8 16v-5M12 16V8M16 16v-3"/>',receipt:'<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',save:'<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>',qr:'<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 14h2v6h-4M14 18h2"/>',moon:'<path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',chev:'<path d="M9 5l7 7-7 7"/>',logo:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/>'};
+const ic=(n,z=22)=>`<svg class="ic" viewBox="0 0 24 24" width="${z}" height="${z}" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+const thm=()=>{try{return localStorage.getItem('theme')}catch(e){}};
+function applyTheme(){const d=(thm()||'dark')=='dark';document.documentElement.dataset.theme=d?'dark':'light';return d}
+function toggleTheme(){const d=applyTheme();try{localStorage.setItem('theme',d?'light':'dark')}catch(e){}applyTheme();render()}
+applyTheme();
+let db,S={students:[],products:[],sales:[],payments:[]};const ST=Object.keys(S);
+let view='home',arg=null,flt='all',q='',sale={sid:null,cart:{},paid:true,q:''},rep='day',hist={t:'all',s:'',a:'',b:''},busy=false;
+
+/* ---------- Banco (IndexedDB) ---------- */
+const open=()=>new Promise((ok,no)=>{const r=indexedDB.open('fiadoEscolar',2);r.onupgradeneeded=()=>[...ST,'pix'].forEach(n=>{if(!r.result.objectStoreNames.contains(n))r.result.createObjectStore(n,{keyPath:'id',autoIncrement:n!='pix'})});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
+const tx=(st,f)=>new Promise((ok,no)=>{const t=db.transaction(st,'readwrite');f(t);t.oncomplete=ok;t.onerror=()=>no(t.error);t.onabort=()=>no(t.error)});
+async function load(){for(const s of ST)S[s]=await new Promise((ok,no)=>{const r=db.transaction(s).objectStore(s).getAll();r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}
+async function save(ops){try{await tx([...new Set(ops.map(o=>o[0]))],t=>ops.forEach(([s,o])=>t.objectStore(s).put(o)));await load();return true}catch(e){toast('Erro ao salvar: '+(e.message||e));return false}}
+
+/* ---------- Cálculos (dinheiro em centavos) ---------- */
+const act=a=>a.filter(x=>!x.voided);
+function acct(sid){const ss=act(S.sales).filter(s=>s.studentId==sid).sort((a,b)=>a.ts-b.ts);
+ let pool=act(S.payments).filter(p=>p.studentId==sid).reduce((n,p)=>n+p.amount,0);
+ const rows=ss.map(s=>{if(s.paidNow)return{s,paid:s.total,rest:0};const p=Math.min(pool,s.total);pool-=p;return{s,paid:p,rest:s.total-p}});
+ return{rows,bal:rows.reduce((n,r)=>n+r.rest,0),credit:pool}}
+const inR=(x,a,b)=>x.ts>=a&&x.ts<b;
+function stats(a,b){const ss=act(S.sales).filter(s=>inR(s,a,b));const sold=ss.reduce((n,s)=>n+s.total,0);
+ const rec=ss.filter(s=>s.paidNow).reduce((n,s)=>n+s.total,0)+act(S.payments).filter(p=>inR(p,a,b)).reduce((n,p)=>n+p.amount,0);
+ return{ss,sold,rec}}
+const debtors=()=>S.students.map(s=>({s,bal:acct(s.id).bal})).filter(d=>d.bal>0).sort((a,b)=>b.bal-a.bal);
+const sName=id=>(S.students.find(s=>s.id==id)||{}).name||'?';
+const itemsTxt=s=>s.items.map(i=>`${i.qty}× ${esc(i.name)}`).join(', ');
+
+/* ---------- Interface base ---------- */
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>t.style.display='none',3200)}
+function modal(title,body,acts){$('#modal').innerHTML=`<div class="ov" onclick="if(event.target==this)closeM()"><div class="sheet"><h3>${title}</h3>${body}${acts}</div></div>`}
+const closeM=()=>$('#modal').innerHTML='';
+const cancelBtn='<button class="btn gh" onclick="closeM()">Cancelar</button>';
+function go(v,a){view=v;arg=a??null;anim=true;scrollTo(0,0);render()}
+function render(){const y=scrollY;const V=views[view]();$('#top').innerHTML=V.h+`<button class="hb" onclick="toggleTheme()">${ic(applyTheme()?'sun':'moon',20)}</button>`;$('#app').className=anim?'an':'';anim=false;$('#app').innerHTML=V.b;
+ const tabs=[['home','home','Início'],['students','users','Alunos'],['sale','plus','Venda'],['debts','cash','Dívidas'],['more','menu','Mais']];
+ const grp={student:'students',pix:'more',products:'more',reports:'more',history:'more',settings:'more'}[view]||view;
+ $('#nav').innerHTML=`<div class="brand">${ic('logo',26)}<b>Fiado Escolar</b></div>`+tabs.map(([k,i,l])=>`<button class="${k==grp?'on':''} ${k=='sale'?'sale':''}" onclick="go('${k}')"><span>${ic(i,i=='plus'?26:22)}</span><em>${l}</em></button>`).join('');scrollTo(0,y)}
+const kpi=(l,v,c='',i='')=>`<div class="card kpi"><div class="ki ${c}">${i?ic(i,20):''}</div><small>${l}</small><b class="${c}">${v}</b></div>`;
+const drow=d=>`<div class="row" onclick="go('student',${d.s.id})"><div><b>${esc(d.s.name)}</b><small>${esc(d.s.cls||'Sem turma')}</small></div><b class="r">${R(d.bal)}</b></div>`;
+const chips=(arr,cur,fn)=>`<div class="chips">${arr.map(([k,l])=>`<button class="chip ${k==cur?'on':''}" onclick="${fn}('${k}')">${l}</button>`).join('')}</div>`;
+
+/* ---------- Telas ---------- */
+const views={
+home(){const t=day0(),s=stats(t,t+D1),Dv=debtors(),tot=Dv.reduce((n,d)=>n+d.bal,0);
+ return{h:`<h1>${ic('logo',24)} Fiado Escolar</h1>`,b:`<div class="grid">${kpi('Vendas do dia',R(s.sold),'','chart')}${kpi('Dinheiro recebido',R(s.rec),'g','cash')}${kpi('Total a receber',R(tot),'r','wallet')}${kpi('Alunos com dívidas',Dv.length,'','users')}</div><button class="btn" style="margin:0 0 14px" onclick="go('sale')">${ic('plus',20)}Nova venda</button>
+ <p class="note">Recebido = vendas pagas na hora + pagamentos de dívidas feitos hoje.</p>
+ <div class="card"><h3>Quem está devendo</h3>${Dv.length?Dv.map(drow).join(''):'<p class="m">Ninguém devendo. Cadastre alunos e registre vendas.</p>'}</div>`}},
+
+students(){const l=S.students.filter(s=>!s.archived).map(s=>({s,bal:acct(s.id).bal})).filter(d=>norm(d.s.name).includes(norm(q))&&(flt=='all'||(flt=='owe')==(d.bal>0))).sort((a,b)=>a.s.name.localeCompare(b.s.name,'pt-BR',{sensitivity:'base'}));
+ return{h:'<h1>Alunos</h1><button class="hb" onclick="stForm(0)">+ Novo</button>',b:`<input class="srch" id="sq" placeholder="Pesquisar pelo nome" value="${esc(q)}" oninput="q=this.value;$('#sl').innerHTML=stList()">${chips([['all','Todos'],['owe','Devendo'],['ok','Em dia']],flt,'setF')}<div class="card" id="sl">${stList()}</div>`}},
+student(){const s=S.students.find(x=>x.id==arg);if(!s){go('students');return{h:'',b:''}}const a=acct(s.id),rm={};a.rows.forEach(r=>rm[r.s.id]=r);
+ const sales=S.sales.filter(x=>x.studentId==s.id).sort((x,y)=>y.ts-x.ts),pays=S.payments.filter(x=>x.studentId==s.id).sort((x,y)=>y.ts-x.ts);
+ const tag=x=>{const r=rm[x.id];return x.voided?'<span class="tag x">Corrigida</span>':x.paidNow?'<span class="tag g">Paga</span>':r.rest==0?'<span class="tag g">Quitada</span>':r.paid>0?`<span class="tag o">Parcial · falta ${R(r.rest)}</span>`:'<span class="tag r">Pendente</span>'};
+ return{h:`<button class="back" onclick="go('students')">‹</button><h1>${esc(s.name)}</h1><button class="hb" onclick="stForm(${s.id})">Editar</button>`,b:`
+ <div class="card kpi"><small>${esc(s.cls||'Sem turma')}${s.note?' · '+esc(s.note):''}</small><b class="${a.bal>0?'r':'g'}">${R(a.bal)}</b><span class="tag ${a.bal>0?'r':'g'}">${a.bal>0?'Devendo':'Em dia'}</span>
+ ${a.bal>0?`<button class="btn" onclick="payForm(${s.id})">Registrar pagamento</button>`:''}<button class="btn gh" onclick="sale.sid=${s.id};sale.q='';go('sale')">Nova venda</button></div>
+ <div class="card"><h3>Compras</h3>${sales.length?sales.map(x=>`<div class="row ${x.voided?'void':''}"><div><b>${itemsTxt(x)}</b><small>${fd(x.ts)}${x.voided||x.paidNow?'':` · pago ${R(rm[x.id].paid)}`}</small></div><div style="text-align:right"><b>${R(x.total)}</b><br>${tag(x)}<br><button class="btn sm red" onclick="delForm('s',${x.id})">Apagar</button></div></div>`).join(''):'<p class="m">Nenhuma compra ainda.</p>'}</div>
+ <div class="card"><h3>Pagamentos</h3>${pays.length?pays.map(p=>`<div class="row ${p.voided?'void':''}"><div><b>${esc(p.method)}</b><small>${fd(p.ts)}${p.note?' · '+esc(p.note):''}</small></div><div style="text-align:right"><b class="g">${R(p.amount)}</b><br><button class="btn sm red" onclick="delForm('p',${p.id})">Apagar</button></div></div>`).join(''):'<p class="m">Nenhum pagamento de dívida.</p>'}</div>`}},
+
+products(){const l=S.products.filter(p=>!p.archived).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR',{sensitivity:'base'}));
+ return{h:'<button class="back" onclick="go(\'more\')">‹</button><h1>Produtos</h1><button class="hb" onclick="prForm(0)">+ Novo</button>',b:`<div class="card">${l.length?l.map(p=>`<div class="row" onclick="prForm(${p.id})"><div><b>${esc(p.name)}</b><small>${p.stock!=null?'Estoque '+p.stock:'Sem controle de estoque'}</small></div><b>${R(p.price)}</b></div>`).join(''):'<p class="m">Cadastre seu primeiro produto com nome e preço.</p>'}</div>`}},
+
+sale(){const st=S.students.find(s=>s.id==sale.sid),ps=S.products.filter(p=>!p.archived).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR',{sensitivity:'base'}));
+ const tot=saleTotal();
+ return{h:'<h1>Nova venda</h1>',b:`<div class="card"><h3>1. Aluno</h3>${st?`<div class="row"><div><b>${esc(st.name)}</b><small>${esc(st.cls||'')}</small></div><button class="btn sm gh" onclick="sale.sid=null;render()">Trocar</button></div>`:`<input class="srch" placeholder="Pesquisar aluno" value="${esc(sale.q)}" oninput="sale.q=this.value;$('#sr').innerHTML=sRes()"><div id="sr">${sRes()}</div>`}</div>
+ <div class="card"><h3>2. Produtos</h3><input class="srch" placeholder="Pesquisar produto" value="${esc(sale.pq||'')}" oninput="sale.pq=this.value;$('#pl').innerHTML=pList()"><div id="pl">${pList()}</div></div>
+ <div class="card stick"><h3>3. Pagamento</h3><div class="total" id="tot">${R(tot)}</div>${chips([['1','Pago na hora'],['0','Pendente (fiado)']],sale.paid?'1':'0','setPaid')}
+ <button class="btn" onclick="saveSale()">Salvar venda</button></div>`}},
+
+debts(){const Dv=debtors(),tot=Dv.reduce((n,d)=>n+d.bal,0);
+ return{h:'<h1>Dívidas</h1>',b:`<div class="grid">${kpi('Total a receber',R(tot),'','wallet')}${kpi('Devedores',Dv.length,'','users')}</div><button class="btn" style="margin:0 0 14px" onclick="exportDebtors()">${ic('save',20)}Exportar lista de devedores</button><div class="card">${Dv.length?Dv.map(drow).join(''):'<p class="m">Nenhuma dívida em aberto. 🎉</p>'}</div>`}},
+
+more(){const it=[['pix','qr','Pagamento via Pix'],['products','box','Produtos'],['reports','chart','Relatórios'],['history','receipt','Histórico e correções'],['settings','save','Configurações e backup']];
+ return{h:'<h1>Mais</h1>',b:`<div class="card">${it.map(([k,i,l])=>`<div class="row mi" onclick="go('${k}')"><div class="mic">${ic(i,20)}</div><b>${l}</b>${ic('chev',18)}</div>`).join('')}</div>`}},
+
+reports(){const t=day0(),r={day:[t,t+D1,'Hoje'],week:[t-6*D1,t+D1,'Últimos 7 dias'],month:[new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime(),new Date(new Date().getFullYear(),new Date().getMonth()+1,1).getTime(),'Mês atual']}[rep];
+ const s=stats(r[0],r[1]),tp={};s.ss.forEach(x=>x.items.forEach(i=>{const o=tp[i.name]||(tp[i.name]={q:0,v:0});o.q+=i.qty;o.v+=i.qty*i.price}));
+ const top=Object.entries(tp).sort((a,b)=>b[1].q-a[1].q).slice(0,5),Dv=debtors(),tot=Dv.reduce((n,d)=>n+d.bal,0);
+ return{h:'<button class="back" onclick="go(\'more\')">‹</button><h1>Relatórios</h1>',b:`${chips([['day','Dia'],['week','Semana'],['month','Mês']],rep,'setRep')}<p class="note">${r[2]}</p>
+ <div class="grid">${kpi('Total vendido',R(s.sold),'','chart')}${kpi('Recebido no período',R(s.rec),'g','cash')}</div>${kpi('Dívidas pendentes (total atual)',R(tot),'r','wallet')}
+ <p class="note">Pagamentos de dívidas antigas entram em "Recebido", mas não como venda nova.</p>
+ <div class="card"><h3>Produtos mais vendidos</h3>${top.length?top.map(([n,o])=>`<div class="row"><div><b>${esc(n)}</b><small>${o.q} un.</small></div><b>${R(o.v)}</b></div>`).join(''):'<p class="m">Sem vendas no período.</p>'}</div>
+ <div class="card"><h3>Quem mais deve</h3>${Dv.length?Dv.slice(0,5).map(drow).join(''):'<p class="m">Ninguém devendo.</p>'}</div>`}},
+
+history(){let m=[...S.sales.map(o=>({k:'s',ts:o.ts,o})),...S.payments.map(o=>({k:'p',ts:o.ts,o}))];
+ const a=hist.a?new Date(hist.a+'T00:00').getTime():0,b=hist.b?new Date(hist.b+'T00:00').getTime()+D1:9e15;
+ m=m.filter(x=>(hist.t=='all'||hist.t==x.k)&&(!hist.s||x.o.studentId==hist.s)&&x.ts>=a&&x.ts<b).sort((x,y)=>y.ts-x.ts);const sh=m.slice(0,100);
+ return{h:'<button class="back" onclick="go(\'more\')">‹</button><h1>Histórico</h1>',b:`${chips([['all','Tudo'],['s','Vendas'],['p','Pagamentos']],hist.t,'setH')}
+ <select onchange="hist.s=this.value;render()"><option value="">Todos os alunos</option>${[...S.students].sort((a,b)=>a.name.localeCompare(b.name,'pt-BR',{sensitivity:'base'})).map(s=>`<option value="${s.id}" ${hist.s==s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>
+ <div class="grid"><div><label>De</label><input type="date" value="${hist.a}" onchange="hist.a=this.value;render()"></div><div><label>Até</label><input type="date" value="${hist.b}" onchange="hist.b=this.value;render()"></div></div>
+ <div class="card">${sh.length?sh.map(x=>{const o=x.o,s=x.k=='s';return`<div class="row ${o.voided?'void':''}"><div><b>${s?'🛒 '+itemsTxt(o):'💵 Pagamento ('+esc(o.method)+')'}</b><small>${esc(sName(o.studentId))} · ${fd(o.ts)}${s?(o.paidNow?' · paga':' · fiado'):''}${o.voided?' · CORRIGIDO: '+esc(o.voidReason):''}</small></div><div style="text-align:right"><b class="${s?'':'g'}">${R(s?o.total:o.amount)}</b>${o.voided?'':`<br><button class="btn sm red" onclick="voidForm('${x.k}',${o.id})">Corrigir</button>`}</div></div>`}).join(''):'<p class="m">Nada encontrado.</p>'}${m.length>100?'<p class="note">Mostrando os 100 mais recentes. Use os filtros.</p>':''}</div>`}},
+
+pix(){return{h:'<button class="back" onclick="go(\'more\')">‹</button><h1>Pix</h1>',b:`<div class="card pix"><div class="pixh">${ic('qr',26)}<h3>Pagamento via Pix</h3></div><p class="m">Escaneie o QR Code com o aplicativo do seu banco para pagar.</p>
+ ${pixImg?`<div class="qrbox"><img src="${pixImg}" alt="QR Code Pix"></div>`:`<div class="qrbox empty">${ic('qr',54)}<span>Nenhum QR Code adicionado</span></div>`}
+ <button class="btn" onclick="$('#pixf').click()">${pixImg?'Trocar imagem do QR Code':'Adicionar imagem do QR Code'}</button>${pixImg?'<button class="btn red" onclick="pixDelForm()">Remover imagem</button>':''}
+ <input id="pixf" type="file" accept="image/*" hidden onchange="pixSet(this.files[0]);this.value=''"></div>`}},
+
+settings(){let lb='nunca';try{const v=localStorage.getItem('lastBackup');if(v)lb=fd(+v)}catch(e){}
+ return{h:'<button class="back" onclick="go(\'more\')">‹</button><h1>Backup</h1>',b:`<div class="card"><h3>Seus dados ficam só neste aparelho</h3><p class="m">Se você limpar os dados do aplicativo, trocar de celular ou desinstalar o aplicativo, os registros podem ser perdidos. Exporte um backup com frequência e guarde o arquivo (Drive, WhatsApp, e-mail).</p><p>Último backup: <b>${lb}</b></p>
+ <button class="btn" onclick="exportBk()">Exportar backup (JSON)</button><button class="btn gh" onclick="$('#imp').click()">Importar backup</button><input id="imp" type="file" hidden onchange="importBk(this.files[0]);this.value=''"></div>
+ <div class="card"><h3>Demonstração</h3><p class="m">Carrega alunos e vendas fictícios (marcados "exemplo") para testar. Apague depois em "Apagar tudo".</p><button class="btn gh" onclick="demo()">Carregar dados fictícios</button><button class="btn red" onclick="wipeForm()">Apagar tudo</button></div>`}}
+};
+
+/* ---------- Ações: alunos ---------- */
+const setF=k=>{flt=k;render()},setPaid=k=>{sale.paid=k=='1';render()},setRep=k=>{rep=k;render()},setH=k=>{hist.t=k;render()};
+function stList(){const l=S.students.filter(s=>!s.archived).map(s=>({s,bal:acct(s.id).bal})).filter(d=>norm(d.s.name).includes(norm(q))&&(flt=='all'||(flt=='owe')==(d.bal>0))).sort((a,b)=>a.s.name.localeCompare(b.s.name,'pt-BR',{sensitivity:'base'}));
+ return l.length?l.map(d=>`<div class="row" onclick="go('student',${d.s.id})"><div><b>${esc(d.s.name)}</b><small>${esc(d.s.cls||'Sem turma')}</small></div>${d.bal>0?`<b class="r">${R(d.bal)}</b>`:'<span class="tag g">Em dia</span>'}</div>`).join(''):'<p class="m">Nenhum aluno encontrado.</p>'}
+function stForm(id){const s=S.students.find(x=>x.id==id)||{};modal(id?'Editar aluno':'Novo aluno',`<label>Nome completo</label><input id="f1" value="${esc(s.name)}"><label>Turma (opcional)</label><input id="f2" value="${esc(s.cls)}"><label>Observação (opcional)</label><input id="f3" value="${esc(s.note)}">`,`<button class="btn" onclick="stSave(${id})">Salvar</button>${id?`<button class="btn red" onclick="stDel(${id})">Excluir aluno</button>`:''}${cancelBtn}`)}
+async function stSave(id){const n=$('#f1').value.trim().replace(/\s+/g,' '),c=$('#f2').value.trim();if(n.length<2)return toast('Digite o nome completo do aluno.');
+ if(S.students.some(s=>s.id!=id&&!s.archived&&norm(s.name)==norm(n)&&norm(s.cls)==norm(c)))return toast('Já existe um aluno com esse nome e turma.');
+ const old=S.students.find(x=>x.id==id)||{};const o={...old,name:n,cls:c,note:$('#f3').value.trim()};if(!id)delete o.id;if(await save([['students',o]])){closeM();toast('Aluno salvo');render()}}
+function stDel(id){const bal=acct(id).bal,mv=S.sales.some(x=>x.studentId==id)||S.payments.some(x=>x.studentId==id);
+ if(bal>0)return toast(`Este aluno deve ${R(bal)}. Registre o pagamento antes de excluir.`);
+ modal('Excluir aluno?',`<p>${mv?'Este aluno tem movimentações financeiras. Ele será ocultado das listas, mas o histórico será preservado.':'O aluno será removido das listas.'}</p>`,`<button class="btn red" onclick="stDo(${id})">Sim, excluir</button>${cancelBtn}`)}
+async function stDo(id){const o={...S.students.find(x=>x.id==id),archived:true};if(await save([['students',o]])){closeM();go('students')}}
+
+/* ---------- Produtos ---------- */
+function prForm(id){const p=S.products.find(x=>x.id==id)||{};const v=c=>c==null?'':(c/100).toFixed(2).replace('.',',');
+ modal(id?'Editar produto':'Novo produto',`<label>Nome</label><input id="f1" value="${esc(p.name)}"><label>Preço de venda (R$)</label><input id="f2" inputmode="decimal" value="${v(p.price)}"><label>Estoque (opcional, deixe vazio se não controla)</label><input id="f3" inputmode="numeric" value="${p.stock??''}">`,`<button class="btn" onclick="prSave(${id})">Salvar</button>${id?`<button class="btn red" onclick="prDel(${id})">Excluir produto</button>`:''}${cancelBtn}`)}
+async function prSave(id){const n=$('#f1').value.trim(),pr=toC($('#f2').value),sv=$('#f3').value.trim(),st=sv===''?null:parseInt(sv);
+ if(n.length<2)return toast('Digite o nome do produto.');if(pr==null||pr<=0)return toast('Informe um preço de venda válido.');if(st!=null&&(isNaN(st)||st<0))return toast('Estoque inválido.');
+ if(S.products.some(p=>p.id!=id&&!p.archived&&norm(p.name)==norm(n)))return toast('Já existe um produto com esse nome.');
+ const o={...(S.products.find(x=>x.id==id)||{}),name:n,price:pr,stock:st};if(!id)delete o.id;if(await save([['products',o]])){closeM();toast('Produto salvo');render()}}
+function prDel(id){modal('Excluir produto?','<p>O produto some da lista de venda. Vendas antigas continuam com os preços da época.</p>',`<button class="btn red" onclick="prDo(${id})">Sim, excluir</button>${cancelBtn}`)}
+async function prDo(id){if(await save([['products',{...S.products.find(x=>x.id==id),archived:true}]])){closeM();render()}}
+
+/* ---------- Venda ---------- */
+function sRes(){const l=S.students.filter(s=>!s.archived&&norm(s.name).includes(norm(sale.q))).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR',{sensitivity:'base'})).slice(0,6);
+ return l.length?l.map(s=>`<div class="row" onclick="sale.sid=${s.id};render()"><div><b>${esc(s.name)}</b><small>${esc(s.cls||'')}</small></div><span>›</span></div>`).join(''):'<p class="m">Nenhum aluno. Cadastre em Alunos.</p>'}
+function pList(){const l=S.products.filter(p=>!p.archived&&norm(p.name).includes(norm(sale.pq))).sort((a,b)=>a.name.localeCompare(b.name,'pt-BR',{sensitivity:'base'}));
+ return l.length?l.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><small>${R(p.price)} cada${p.stock!=null?' · estoque '+p.stock:''}</small><small class="sbt" id="sb${p.id}">${subTxt(p.id)}</small></div><div class="step"><button onclick="qty(${p.id},-1)">−</button><input class="qin" id="q${p.id}" inputmode="numeric" value="${sale.cart[p.id]||0}" oninput="setQty(${p.id},this.value,true)" onfocus="this.select()" onblur="this.value=sale.cart[${p.id}]||0"><button onclick="qty(${p.id},1)">+</button></div></div>`).join(''):`<p class="m">${S.products.some(p=>!p.archived)?'Nenhum produto encontrado.':'Cadastre produtos primeiro (Mais → Produtos).'}</p>`}
+const saleTotal=()=>Object.entries(sale.cart).reduce((n,[id,k])=>n+k*((S.products.find(p=>p.id==id)||{}).price||0),0);
+const subTxt=id=>{const p=S.products.find(x=>x.id==id),k=sale.cart[id]||0;return p&&k?`${k} × ${R(p.price)} = ${R(k*p.price)}`:''};
+function setQty(id,v,typing){const p=S.products.find(x=>x.id==id);if(!p)return;let n=Math.min(9999,Math.floor(Number(String(v).replace(/\D/g,'')))||0);
+ if(p.stock!=null&&n>p.stock){n=p.stock;typing=false;toast(`Estoque de ${p.name}: ${p.stock}`)}
+ if(n)sale.cart[id]=n;else delete sale.cart[id];
+ const e=$('#q'+id);if(e&&!typing)e.value=n;const sb=$('#sb'+id);if(sb)sb.textContent=subTxt(id);const t=$('#tot');if(t)t.textContent=R(saleTotal())}
+const qty=(id,d)=>setQty(id,(sale.cart[id]||0)+d);
+async function saveSale(){if(busy)return;const st=S.students.find(s=>s.id==sale.sid);if(!st)return toast('Selecione o aluno.');
+ const items=[],ups=[];for(const[id,k]of Object.entries(sale.cart)){const p=S.products.find(p=>p.id==id);if(!p||k<1)continue;
+  if(p.stock!=null){if(k>p.stock)return toast(`Estoque insuficiente de ${p.name} (restam ${p.stock}).`);ups.push(['products',{...p,stock:p.stock-k}])}
+  items.push({pid:p.id,name:p.name,qty:k,price:p.price})}
+ if(!items.length)return toast('Selecione ao menos um produto.');
+ const total=items.reduce((n,i)=>n+i.qty*i.price,0);
+ busy=true;const ok=await save([['sales',{studentId:st.id,ts:Date.now(),items,total,paidNow:sale.paid}],...ups]);busy=false;
+ if(ok){toast(`Venda de ${R(total)} salva (${sale.paid?'paga':'pendente'})`);sale={sid:null,cart:{},paid:true,q:''};render()}}
+
+/* ---------- Pagamentos ---------- */
+function payForm(id){const bal=acct(id).bal;modal('Registrar pagamento',`<p>Saldo devedor: <b class="r">${R(bal)}</b></p><label>Valor recebido (R$)</label><input id="f1" inputmode="decimal" value="${(bal/100).toFixed(2).replace('.',',')}">
+ <button class="btn sm gh" onclick="$('#f1').value='${(bal/100).toFixed(2).replace('.',',')}'">Pagar tudo</button><div style="height:10px"></div>
+ <label>Data e horário</label><input id="f2" type="datetime-local" value="${inp(Date.now())}"><label>Forma de pagamento</label><select id="f3"><option>Dinheiro</option><option>Pix</option><option>Outra</option></select><label>Observação (opcional)</label><input id="f4">`,`<button class="btn" onclick="paySave(${id})">Confirmar pagamento</button>${cancelBtn}`)}
+async function paySave(id){if(busy)return;const bal=acct(id).bal,v=toC($('#f1').value),ts=new Date($('#f2').value).getTime();
+ if(!v||v<=0)return toast('Informe um valor válido.');if(v>bal)return toast(`O valor passa do saldo devedor (${R(bal)}).`);if(isNaN(ts))return toast('Data inválida.');
+ busy=true;const ok=await save([['payments',{studentId:id,ts,amount:v,method:$('#f3').value,note:$('#f4').value.trim()}]]);busy=false;
+ if(ok){closeM();toast(v==bal?'Conta quitada! ✅':'Pagamento parcial registrado');render()}}
+
+/* ---------- Correções (preservam o registro original) ---------- */
+function voidForm(k,id){const o=(k=='s'?S.sales:S.payments).find(x=>x.id==id);
+ modal('Corrigir registro',`<p>${k=='s'?'Venda de <b>'+R(o.total)+'</b>: '+itemsTxt(o):'Pagamento de <b>'+R(o.amount)+'</b>'} — ${esc(sName(o.studentId))}</p><p class="m">O registro não é apagado: fica marcado como corrigido e deixa de contar nos totais. Para refazer, lance o registro certo depois.</p><label>Motivo da correção</label><input id="f1" placeholder="Ex.: valor digitado errado">`,`<button class="btn red" onclick="voidDo('${k}',${id})">Confirmar correção</button>${cancelBtn}`)}
+async function voidDo(k,id){const r=$('#f1').value.trim();if(!r)return toast('Informe o motivo da correção.');
+ const o={...(k=='s'?S.sales:S.payments).find(x=>x.id==id),voided:true,voidReason:r,voidTs:Date.now()},store=k=='s'?'sales':'payments',ops=[[store,o]];
+ if(k=='s'){const old=S.sales.find(x=>x.id==id),i=S.sales.indexOf(old);S.sales[i]=o;const cr=acct(o.studentId).credit;S.sales[i]=old;
+  if(cr>0)return toast('Este aluno já pagou parte desta venda. Corrija antes o pagamento ligado a ela.');
+  o.items.forEach(it=>{const p=S.products.find(p=>p.id==it.pid);if(p&&p.stock!=null)ops.push(['products',{...p,stock:p.stock+it.qty}])})}
+ if(await save(ops)){closeM();toast('Registro corrigido');render()}}
+
+/* ---------- Apagar registro de vez ---------- */
+function delForm(k,id){const o=(k=='s'?S.sales:S.payments).find(x=>x.id==id);
+ modal(k=='s'?'Apagar compra?':'Apagar pagamento?',`<p>${k=='s'?'Compra de <b>'+R(o.total)+'</b>: '+itemsTxt(o):'Pagamento de <b>'+R(o.amount)+'</b> ('+esc(o.method)+')'}<br><small>${esc(sName(o.studentId))} · ${fd(o.ts)}</small></p><p class="r"><b>O registro será apagado de vez</b> e os saldos e totais serão recalculados.${k=='s'?' O estoque, se controlado, volta.':''}</p>`,`<button class="btn red" onclick="delDo('${k}',${id})">Sim, apagar</button>${cancelBtn}`)}
+async function delDo(k,id){const L=k=='s'?S.sales:S.payments,o=L.find(x=>x.id==id),puts=[];
+ if(k=='s'&&!o.voided){const old=S.sales;S.sales=old.filter(x=>x.id!=id);const cr=acct(o.studentId).credit;S.sales=old;
+  if(cr>0)return toast('Este aluno já pagou parte desta compra. Apague antes o pagamento ligado a ela.');
+  o.items.forEach(it=>{const p=S.products.find(p=>p.id==it.pid);if(p&&p.stock!=null)puts.push(['products',{...p,stock:p.stock+it.qty}])})}
+ const st=k=='s'?'sales':'payments';
+ try{await tx([...new Set([...puts.map(x=>x[0]),st])],t=>{puts.forEach(([n,x])=>t.objectStore(n).put(x));t.objectStore(st).delete(id)});await load();closeM();toast('Registro apagado');render()}catch(e){toast('Erro ao apagar: '+(e.message||e))}}
+
+/* ---------- Imagem do QR Code Pix ---------- */
+const loadPix=()=>new Promise(ok=>{try{const q=db.transaction('pix').objectStore('pix').get('qr');q.onsuccess=()=>{pixImg=q.result?q.result.data:null;ok()};q.onerror=()=>ok()}catch(e){ok()}});
+async function savePix(d){await tx(['pix'],t=>{d?t.objectStore('pix').put({id:'qr',data:d}):t.objectStore('pix').delete('qr')});pixImg=d||null}
+function pixSet(f){if(!f)return;if(!/^image\//.test(f.type))return toast('Escolha um arquivo de imagem (PNG ou JPG).');if(f.size>8e6)return toast('Imagem muito grande (máx. 8 MB).');
+ const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=async()=>{let d=fr.result;
+  if(Math.max(im.width,im.height)>1200){const k=1200/Math.max(im.width,im.height),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);d=c.toDataURL('image/png')}
+  try{await savePix(d);toast('QR Code salvo');render()}catch(e){toast('Erro ao salvar a imagem.')}};im.onerror=()=>toast('Não foi possível ler essa imagem.');im.src=fr.result};fr.readAsDataURL(f)}
+function pixDelForm(){modal('Remover QR Code?','<p>A imagem será removida. Você pode adicionar outra depois.</p>',`<button class="btn red" onclick="pixDel()">Sim, remover</button>${cancelBtn}`)}
+async function pixDel(){await savePix(null);closeM();toast('Imagem removida');render()}
+
+/* ---------- Exportar devedores (CSV para Excel / Google Planilhas) ---------- */
+async function saveFile(name,text,mime){
+ if(NATIVE){try{const P=Capacitor.Plugins;const f=await P.Filesystem.writeFile({path:name,data:text,directory:'CACHE',encoding:'utf8'});await P.Share.share({title:name,url:f.uri,dialogTitle:'Salvar ou enviar arquivo'});return true}
+  catch(e){if(!/cancel/i.test(String(e&&e.message||e)))toast('Erro ao exportar: '+(e.message||e));return false}}
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;document.body.appendChild(a);a.click();a.remove();return true}
+const csvT=v=>{v=String(v??'').replace(/\r?\n/g,' ');if(/^[=+\-@\t]/.test(v))v="'"+v;return /[;"]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+const csvM=c=>(c/100).toFixed(2).replace('.',',');
+function debtorsCsv(){const Dv=debtors().sort((a,b)=>a.s.name.localeCompare(b.s.name,'pt-BR',{sensitivity:'base'})),tot=Dv.reduce((n,d)=>n+d.bal,0);
+ const L=[['LISTA DE DEVEDORES'],['Gerado em',fd(Date.now())],['Quantidade de devedores',Dv.length],['Total a receber',csvM(tot)],[],['Aluno','Turma','Produtos comprados','Data da compra','Valor total','Valor já pago','Saldo pendente']];
+ Dv.forEach(d=>{let t=0,pg=0,rs=0;acct(d.s.id).rows.filter(x=>x.rest>0).sort((a,b)=>a.s.ts-b.s.ts).forEach(x=>{t+=x.s.total;pg+=x.paid;rs+=x.rest;
+  L.push([d.s.name,d.s.cls||'',x.s.items.map(i=>i.qty+'x '+i.name).join(', '),fd(x.s.ts),csvM(x.s.total),csvM(x.paid),csvM(x.rest)])});
+  L.push(['TOTAL - '+d.s.name,'','','',csvM(t),csvM(pg),csvM(rs)],[])});
+ return '\ufeff'+L.map(x=>x.map(csvT).join(';')).join('\r\n')}
+async function exportDebtors(){if(!debtors().length)return toast('Nenhum devedor para exportar.');
+ if(await saveFile('devedores-'+new Date().toISOString().slice(0,10)+'.csv',debtorsCsv(),'text/csv;charset=utf-8'))toast('Lista de devedores exportada')}
+
+/* ---------- Botão voltar do Android ---------- */
+if(NATIVE&&Capacitor.Plugins.App)Capacitor.Plugins.App.addListener('backButton',()=>{
+ if($('#modal').innerHTML){closeM();return}
+ if(view=='home'){Capacitor.Plugins.App.exitApp();return}
+ if(view=='student')go('students');else if(['products','reports','history','settings','pix'].includes(view))go('more');else go('home')});
+
+/* ---------- Backup ---------- */
+async function exportBk(){const d={app:'fiado-escolar',version:1,exported:Date.now(),...S,pix:pixImg};
+ if(await saveFile('backup-fiado-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(d),'application/json')){try{localStorage.setItem('lastBackup',Date.now())}catch(e){}toast('Backup exportado');if(view=='settings')setTimeout(render,300)}}
+function importBk(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(d.app!='fiado-escolar'||ST.some(s=>!Array.isArray(d[s])||d[s].some(x=>!x||typeof x!='object'||x.id==null)))throw 0;window._bk=d;
+ modal('Restaurar backup?',`<p>Backup de <b>${fd(d.exported)}</b>: ${d.students.length} alunos, ${d.sales.length} vendas, ${d.payments.length} pagamentos.</p><p class="r"><b>Isto substitui TODOS os dados atuais</b> deste aparelho.</p>`,`<button class="btn gh" onclick="exportBk()">Exportar dados atuais primeiro</button><button class="btn red" onclick="restore()">Substituir e restaurar</button>${cancelBtn}`)}catch(e){toast('Arquivo inválido: use um backup exportado por este sistema.')}};r.readAsText(f)}
+async function restore(){try{await tx(ST,t=>ST.forEach(s=>{const o=t.objectStore(s);o.clear();window._bk[s].forEach(x=>o.put(x))}));await load();if(window._bk.pix)await savePix(window._bk.pix);closeM();toast('Backup restaurado');go('home')}catch(e){toast('Erro ao restaurar: '+e.message)}}
+function wipeForm(){modal('Apagar tudo?','<p class="r"><b>Todos os alunos, produtos, vendas e pagamentos serão apagados.</b> Exporte um backup antes se precisar.</p>',`<button class="btn red" onclick="wipe()">Sim, apagar tudo</button>${cancelBtn}`)}
+async function wipe(){await tx(ST,t=>ST.forEach(s=>t.objectStore(s).clear()));await load();closeM();toast('Dados apagados');go('home')}
+async function demo(){if(S.students.length||S.products.length)return toast('Já existem dados. Apague tudo antes de carregar a demonstração.');
+ await save([...['Ana Souza (exemplo)|5º A','Bruno Lima (exemplo)|5º A','Carla Dias (exemplo)|6º B'].map(x=>['students',{name:x.split('|')[0],cls:x.split('|')[1],note:''}]),
+ ...[['Coca-Cola',500],['Coxinha',400],['Pastel',800],['Suco',300]].map(([name,price])=>['products',{name,price,stock:null}])]);
+ const P=n=>S.products.find(p=>p.name==n),A=S.students,it=(n,k)=>({pid:P(n).id,name:n,qty:k,price:P(n).price}),now=Date.now();
+ const mk=(s,d,items,paidNow)=>['sales',{studentId:A[s].id,ts:now-d*D1,items,total:items.reduce((n,i)=>n+i.qty*i.price,0),paidNow}];
+ await save([mk(0,2,[it('Coca-Cola',1)],true),mk(0,1,[it('Coxinha',1),it('Pastel',1)],false),mk(1,3,[it('Pastel',1)],false),mk(2,0,[it('Suco',2)],true),
+ ['payments',{studentId:A[1].id,ts:now,amount:300,method:'Pix',note:'parcial'}]]);toast('Dados fictícios carregados');go('home')}
+
+/* ---------- Início ---------- */
+(async()=>{try{db=await open();await load();await loadPix();if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();render()}
+ catch(e){$('#app').innerHTML='<div class="card"><h3>Não foi possível abrir o armazenamento</h3><p>Abra este arquivo em um navegador atualizado (Chrome) e fora do modo anônimo.</p></div>'}})();
+</script></body></html>
